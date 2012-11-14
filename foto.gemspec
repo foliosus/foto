@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Foto::VERSION
   gem.authors       = ["Peter Tran"]
   gem.email         = ["Peter Tran <ptran@optimiscorp.com>"]
-  gem.description   = %q{placeholder}
-  gem.summary       = %q{placeholder}
+  gem.description   = %q{Provides an interface for communicating with FOTO Patient Inquiry API}
+  gem.summary       = %q{Provides an interface for communicating with FOTO Patient Inquiry API}
   gem.homepage      = ""
 
   gem.add_development_dependency "rspec"
