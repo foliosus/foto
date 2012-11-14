@@ -16,6 +16,10 @@ module Foto
       self.patients_uri = Defaults::PATIENTS_URI
     end
 
+    def options
+      Hash[ *VALID_OPTIONS.map {|option| [option, send(option)]}.flatten ]
+    end
+
     def configure
       yield self
     end
