@@ -37,13 +37,15 @@ describe Foto::Config do
       config.options.keys.should =~ Foto::Config::VALID_OPTIONS
     end
   end
+end
 
+describe Foto do
   describe '.configure' do
     Foto::Config::VALID_OPTIONS.each do |option|
       it "#{option} should be configurable" do
-        Foto::Config.configure do |config|
-          config.send("#{option}=", option)
-          config.send(option).should eql(option)
+        Foto.configure do |configuration|
+          configuration.send("#{option}=", option)
+          configuration.send(option).should eql(option)
         end
       end
     end

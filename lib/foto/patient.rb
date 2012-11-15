@@ -12,20 +12,35 @@ module Foto
 
     attr_accessor *ATTRIBUTES.keys
 
+    def initialize(attributes={})
+      attributes.each do |k, v|
+        send("#{k}=", v)
+      end
+    end
+
     # Class methods
     def self.attributes
       ATTRIBUTES.keys
     end
 
+    def clean_date_of_birth
+      case date_of_birth
+      when String
+        Date.parse(date_of_birth).strftime('%Y-%m-%d')
+      when Date
+        date_of_birth.strftime('%Y-%m-%d')
+      end
+    end
+
     # Instance methods
-    def to_json
+    def as_json
       {
-        'FirstName'   => patient.first_name,
-        'LastName'    => patient.last_name,
-        'DateOfBirth' => patient.birth_date.iso8601,
-        'Email'       => patient.email,
-        'Gender'      => patient.gender,
-        'Language'    => 'en',
+        'FirstName'   => first_name,
+        'LastName'    => last_name,
+        'DateOfBirth' => clean_date_of_birth,
+        'Email'       => email,
+        'Gender'      => gender,
+        'Language'    => language || 'en',
         'ExternalId'  => external_id
       }.to_json
     end

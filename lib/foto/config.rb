@@ -1,4 +1,7 @@
 module Foto
+  def self.configure
+    yield Config
+  end
   module Config
     module Defaults
       API_KEY = 'placeholder'
@@ -20,8 +23,5 @@ module Foto
       Hash[ *VALID_OPTIONS.map {|option| [option, send(option)]}.flatten ]
     end
 
-    def configure
-      yield self
-    end
   end
 end
