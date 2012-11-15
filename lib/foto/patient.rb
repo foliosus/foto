@@ -1,20 +1,17 @@
 module Foto
   class Patient
     ATTRIBUTES = [ :external_id, :first_name, :last_name,
-      :email, :date_of_birth, :gender, :language
-    ]
-
+      :email, :date_of_birth, :gender, :language ]
     attr_accessor *ATTRIBUTES
+
+    def self.attributes
+      ATTRIBUTES
+    end
 
     def initialize(attributes={})
       attributes.each do |k, v|
         send("#{k}=", v)
       end
-    end
-
-    # Class methods
-    def self.attributes
-      ATTRIBUTES
     end
 
     def clean_date_of_birth
@@ -26,7 +23,6 @@ module Foto
       end
     end
 
-    # Instance methods
     def as_json
       {
         'FirstName'   => first_name,
