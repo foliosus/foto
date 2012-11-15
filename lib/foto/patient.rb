@@ -1,16 +1,10 @@
 module Foto
   class Patient
-    ATTRIBUTES = {
-      :external_id   => 'ExternalID',
-      :first_name    => 'FirstName',
-      :last_name     => 'LastName',
-      :email         => 'Email',
-      :date_of_birth => 'DateOfBirth',
-      :gender        => 'Gender',
-      :language      => 'Language'
-    }
+    ATTRIBUTES = [ :external_id, :first_name, :last_name,
+      :email, :date_of_birth, :gender, :language
+    ]
 
-    attr_accessor *ATTRIBUTES.keys
+    attr_accessor *ATTRIBUTES
 
     def initialize(attributes={})
       attributes.each do |k, v|
@@ -20,7 +14,7 @@ module Foto
 
     # Class methods
     def self.attributes
-      ATTRIBUTES.keys
+      ATTRIBUTES
     end
 
     def clean_date_of_birth

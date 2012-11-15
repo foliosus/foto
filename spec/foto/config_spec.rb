@@ -16,7 +16,7 @@ describe Foto::Config do
 
   describe '.patients_url' do
     it 'should have a default' do
-      config.patients_uri.should eql(defaults::PATIENTS_URI)
+      config.base_uri.should eql(defaults::BASE_URI)
     end
   end
 
@@ -24,11 +24,11 @@ describe Foto::Config do
     it 'resets the configuration to their default values' do
       config.api_key = 'somethingelse'
       config.api_key.should eql('somethingelse')
-      config.patients_uri = 'http://other.com'
-      config.patients_uri.should eql('http://other.com')
+      config.base_uri = 'http://other.com'
+      config.base_uri.should eql('http://other.com')
       config.reset!
       config.api_key.should eql(defaults::API_KEY)
-      config.patients_uri.should eql(defaults::PATIENTS_URI)
+      config.base_uri.should eql(defaults::BASE_URI)
     end
   end
 
