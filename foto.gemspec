@@ -12,6 +12,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Provides an interface for communicating with FOTO Patient Inquiry API}
   gem.homepage      = ""
 
+  gem.add_runtime_dependency "json"
   gem.add_development_dependency "rspec"
 
   gem.files         = `git ls-files`.split($/)

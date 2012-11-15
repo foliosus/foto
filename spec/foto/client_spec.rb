@@ -1,14 +1,9 @@
 require 'spec_helper'
-require 'client'
-require 'config'
 
 describe Foto::Client do
   describe '#initialize' do
     let(:default_options) do
-      {
-        :api_key => 'AAABBBCCC',
-        :patients_uri => 'http://a.b.com'
-      }
+      { :api_key => 'AAABBBCCC', :patients_uri => 'http://a.b.com' }
     end
     let(:foto) { Foto::Client.new(default_options) }
 

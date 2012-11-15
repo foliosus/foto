@@ -1,5 +1,7 @@
-require "foto/version"
+require 'foto/version'
 
 module Foto
-  # Your code goes here...
+  require 'foto/client'
+  require 'foto/config'
+  require 'foto/patient'
 end

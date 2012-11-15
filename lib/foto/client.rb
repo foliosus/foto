@@ -1,4 +1,4 @@
-require 'config'
+require 'foto/config'
 
 module Foto
   class Client

@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'config'
 
 describe Foto::Config do
   let(:config)   { Foto::Config }
