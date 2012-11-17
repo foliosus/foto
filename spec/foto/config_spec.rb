@@ -9,14 +9,20 @@ describe Foto::Config do
   end
 
   describe '.api_key' do
-    it 'should have a default' do
+    it 'has a default' do
       config.api_key.should eql(defaults::API_KEY)
     end
   end
 
-  describe '.patients_url' do
-    it 'should have a default' do
+  describe '.base_uri' do
+    it 'has a default' do
       config.base_uri.should eql(defaults::BASE_URI)
+    end
+  end
+
+  describe '.protocol' do
+    it 'has a default' do
+      config.protocol.should eql(defaults::PROTOCOL)
     end
   end
 

@@ -14,6 +14,10 @@ module Foto
       end
     end
 
+    def url
+      'patient'
+    end
+
     def clean_date_of_birth
       case date_of_birth
       when String
