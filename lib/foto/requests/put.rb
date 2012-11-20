@@ -9,6 +9,8 @@ module Foto
         self.class.send_request(build_request(url, body))
       end
 
+      private
+
       def build_request(url, body)
         request = Net::HTTP::Put.new(url.request_uri)
         request.body = body
