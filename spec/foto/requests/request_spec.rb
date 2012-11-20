@@ -4,9 +4,9 @@ describe Foto::Requests::Request do
   let(:api_key) { Foto::Config.api_key }
   let(:base_uri) { Foto::Config.base_uri }
   let(:partial_url) { 'patient' }
-  let(:url) { Foto::Requests::Request.build_uri('patient') }
+  let(:url) { Foto::Requests::Request.build_url('patient') }
 
-  describe '.build_uri' do
+  describe '.build_url' do
     it 'returns a URI::HTTP' do
       url.class.should eql(URI::HTTP)
     end

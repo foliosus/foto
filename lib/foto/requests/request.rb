@@ -12,7 +12,7 @@ module Foto
         end
       end
 
-      def self.build_uri(partial_url)
+      def self.build_url(partial_url)
         format = 'json'
         URI("#{Foto::Config.base_uri}/#{partial_url}/#{format}/?Api-Key=#{Foto::Config.api_key}")
       end
