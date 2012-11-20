@@ -17,18 +17,18 @@ Or install it yourself as:
     $ gem install foto
 
 ## Usage
-
-	patient = Foto::Patient.new({
-        :first_name    => patient.first_name,
-        :last_name     => patient.last_name,
-        :date_of_birth => patient.birth_date,
-        :email         => patient.email,
-        :gender        => patient.gender,
-        :language      => 'en',
-        :external_id   => patient.id
-      })
-    patient.save
-
+```ruby
+patient = Foto::Patient.new({
+      :first_name    => patient.first_name,
+      :last_name     => patient.last_name,
+      :date_of_birth => patient.birth_date,
+      :email         => patient.email,
+      :gender        => patient.gender,
+      :language      => 'en',
+      :external_id   => patient.id
+    })
+patient.save
+```
 
 ## Contributing
 
