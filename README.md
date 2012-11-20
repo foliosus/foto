@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-	Foto::Patient.new({
+	patient = Foto::Patient.new({
         :first_name    => patient.first_name,
         :last_name     => patient.last_name,
         :date_of_birth => patient.birth_date,
@@ -27,6 +27,7 @@ Or install it yourself as:
         :language      => 'en',
         :external_id   => patient.id
       })
+  patient.save
 
 
 ## Contributing
