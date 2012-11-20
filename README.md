@@ -27,7 +27,7 @@ Or install it yourself as:
         :language      => 'en',
         :external_id   => patient.id
       })
-  patient.save
+    patient.save
 
 
 ## Contributing
