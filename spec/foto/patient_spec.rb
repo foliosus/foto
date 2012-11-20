@@ -41,4 +41,17 @@ describe Foto::Patient do
       }
     end
   end
+
+  describe '#save' do
+    it 'creates a Put request' do
+      pending
+    end
+  end
+
+  describe '.url' do
+    it 'returns a partial URL' do
+      patient.class.url.should_not be_nil
+      patient.class.url.should be_an_instance_of(String)
+    end
+  end
 end

@@ -2,20 +2,21 @@ module Foto
   class Patient
     ATTRIBUTES = [ :external_id, :first_name, :last_name,
       :email, :date_of_birth, :gender, :language ]
+
     attr_accessor *ATTRIBUTES
 
     def self.attributes
       ATTRIBUTES
     end
 
+    def self.url
+      'patients'
+    end
+
     def initialize(attributes={})
       attributes.each do |k, v|
         send("#{k}=", v)
       end
-    end
-
-    def url
-      'patient'
     end
 
     def clean_date_of_birth
@@ -37,6 +38,10 @@ module Foto
         'Language'    => language || 'en',
         'ExternalId'  => external_id
       }.to_json
+    end
+
+    def save
+      Foto::Requests::Put.new(self.class.url, as_json)
     end
   end
 end
