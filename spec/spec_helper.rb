@@ -4,7 +4,7 @@
 # loaded once.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'json'
+require 'yajl'
 require 'foto'
 require 'webmock/rspec'
 

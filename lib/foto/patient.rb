@@ -10,7 +10,7 @@ module Foto
     end
 
     def self.url
-      'patients'
+      'patient'
     end
 
     def initialize(attributes={})
@@ -19,29 +19,20 @@ module Foto
       end
     end
 
-    def clean_date_of_birth
-      case date_of_birth
-      when String
-        Date.parse(date_of_birth).strftime('%Y-%m-%d')
-      when Date
-        date_of_birth.strftime('%Y-%m-%d')
-      end
-    end
-
     def as_json
-      {
+      Yajl::Encoder.encode({
         'FirstName'   => first_name,
         'LastName'    => last_name,
-        'DateOfBirth' => clean_date_of_birth,
+        'DateOfBirth' => Foto::JsonDate.new(date_of_birth),
         'Email'       => email,
         'Gender'      => gender,
         'Language'    => language || 'en',
         'ExternalId'  => external_id
-      }.to_json
+      })
     end
 
     def save
-      Foto::Requests::Put.new(self.class.url, as_json)
+      Foto::Requests::Put.new(self.class.url, as_json).run
     end
   end
 end

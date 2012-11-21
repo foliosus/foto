@@ -9,7 +9,7 @@ describe Foto::Patient do
       :first_name    => 'Bob',
       :last_name     => 'Bobson',
       :email         => 'bob.bobson@bobbobson.com',
-      :date_of_birth => Date.parse('03/07/1983'),
+      :date_of_birth => Time.parse('03/07/1983'),
       :gender        => 'M',
       :language      => 'en'
     }
@@ -29,11 +29,12 @@ describe Foto::Patient do
   end
 
   describe '#as_json' do
+    let(:date_of_birth) { Foto::JsonDate.new(initialized_patient.date_of_birth).to_json }
     it 'returns a JSON hash of attributes' do
-      JSON.parse(initialized_patient.as_json).should == {
+      Yajl::Parser.parse(initialized_patient.as_json).should == {
         'FirstName'   => initialized_patient.first_name,
         'LastName'    => initialized_patient.last_name,
-        'DateOfBirth' => initialized_patient.clean_date_of_birth,
+        'DateOfBirth' => Yajl::Parser.parse(date_of_birth),
         'Email'       => initialized_patient.email,
         'Gender'      => initialized_patient.gender,
         'Language'    => initialized_patient.language,

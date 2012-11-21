@@ -3,13 +3,6 @@ require 'foto/requests/request'
 module Foto
   module Requests
     class Put < Foto::Requests::Request
-      attr_accessor :relative_url, :body
-
-      def initialize(relative_url, body = '')
-        @relative_url = relative_url
-        @body = body
-        self.class.send_request(http_request)
-      end
 
       private
 
@@ -18,7 +11,7 @@ module Foto
       end
 
       def http_request
-        @http_request ||= build_request
+        @http_request ||= add_headers(build_request)
       end
 
       def build_request

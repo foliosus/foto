@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Provides an interface for communicating with FOTO Patient Inquiry API}
   gem.homepage      = ""
 
-  gem.add_dependency "json"
+  gem.add_dependency "yajl-ruby"
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "webmock"
 

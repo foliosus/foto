@@ -5,4 +5,5 @@ module Foto
   require 'foto/config'
   require 'foto/patient'
   require 'foto/requests/put'
+  require 'foto/json_date'
 end
