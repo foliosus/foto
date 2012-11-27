@@ -6,15 +6,7 @@ module Foto
 
       private
 
-      def url
-        @url ||= self.class.build_url(relative_url)
-      end
-
-      def http_request
-        @http_request ||= add_headers(build_request)
-      end
-
-      def build_request
+      def build_http_request
         request = Net::HTTP::Put.new(url.request_uri)
         request.body = body
         request

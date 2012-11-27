@@ -1,18 +1,35 @@
 module Foto
   module Requests
     class Request
-      attr_accessor :relative_url, :body
+      attr_accessor :relative_url, :body, :consumer
 
-      def initialize(relative_url, body = {})
-        @relative_url = relative_url
+      def initialize(consumer, body = {})
+        @consumer = consumer
+        @relative_url = consumer.class.url
         @body = body
       end
 
       def run
-        self.class.send_request(http_request)
+        send_http_request
+      end
+
+      def url
+        @url ||= build_url
       end
 
       private
+
+      def build_http_request
+        raise NotImplementedError.new('You must implement build_request')
+      end
+
+      def http_request
+        @http_request ||= add_headers(build_http_request)
+      end
+
+      def protocol
+        url.scheme
+      end
 
       def content_length
         body.length
@@ -22,6 +39,10 @@ module Foto
         'text/json'
       end
 
+      def api_key
+        consumer.api_key || Foto::Config.api_key
+      end
+
       def add_headers(http_request)
         http_request.add_field('User-Agent', 'Foto')
         http_request.add_field('Content-Length', content_length)
@@ -29,17 +50,18 @@ module Foto
         http_request
       end
 
-      def self.send_request(request)
+      def send_http_request
         base_uri = URI(Foto::Config.base_uri)
         http = Net::HTTP.new(base_uri.host, base_uri.port)
+        http.use_ssl = (protocol === 'https')
         http.start do |http|
-          return http.request(request)
+          return http.request(http_request)
         end
       end
 
-      def self.build_url(partial_url)
+      def build_url
         format = 'json'
-        URI("#{Foto::Config.base_uri}/#{partial_url}/#{format}/?Api-Key=#{Foto::Config.api_key}")
+        URI("#{Foto::Config.base_uri}/#{relative_url}/#{format}/?Api-Key=#{api_key}")
       end
     end
   end

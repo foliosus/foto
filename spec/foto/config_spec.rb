@@ -20,12 +20,6 @@ describe Foto::Config do
     end
   end
 
-  describe '.protocol' do
-    it 'has a default' do
-      config.protocol.should eql(defaults::PROTOCOL)
-    end
-  end
-
   describe '.reset!' do
     it 'resets the configuration to their default values' do
       config.api_key = 'somethingelse'

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Foto::Requests::Put do
-  let(:partial_url) { 'patient' }
-  let(:url) { Foto::Requests::Request.build_url(partial_url).to_s }
+  let(:patient) { Foto::Patient.new }
+  let(:url) { Foto::Requests::Put.new(patient).send(:build_url).to_s }
   let(:body) do
     {
       :a => 'a',
@@ -14,8 +14,22 @@ describe Foto::Requests::Put do
   describe '#run' do
     it 'makes an HTTP Put request to the correct URL' do
       stub_request(:put, url)
-      Foto::Requests::Put.new(partial_url, body).run
+      Foto::Requests::Put.new(patient, body).run
       assert_requested(:put, url)
+    end
+  end
+
+  describe '#url' do
+    let(:api_key) { Foto::Config.api_key }
+    let(:base_uri) { Foto::Config.base_uri }
+    let(:uri) { Foto::Requests::Put.new(patient).send(:build_url) }
+
+    it 'returns a URI::HTTP' do
+      uri.class.should eql(URI::HTTP)
+    end
+
+    it 'has the correct url' do
+      uri.to_s.should eql("#{base_uri}/#{patient.class.url}/json/?Api-Key=#{api_key}")
     end
   end
 end
