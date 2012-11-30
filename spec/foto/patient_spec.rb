@@ -44,8 +44,11 @@ describe Foto::Patient do
   end
 
   describe '#save' do
-    it 'creates a Put request' do
-      pending
+    let(:request) { mock :request }
+    it 'makes a request to FOTO' do
+      Foto::Requests::Put.should_receive(:new).and_return(request)
+      request.should_receive(:run)
+      initialized_patient.save
     end
   end
 

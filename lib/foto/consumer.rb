@@ -2,7 +2,6 @@ module Foto
   class Consumer
     attr_accessor :api_key
 
-
     def self.url
       raise NotImplementedError.new('You must implement self.url')
     end
@@ -18,7 +17,8 @@ module Foto
     end
 
     def save
-      Foto::Requests::Put.new(self, as_json).run
+      put = Foto::Requests::Put.new(self, as_json)
+      put.run
     end
   end
 end
