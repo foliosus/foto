@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = ""
 
   gem.add_dependency "yajl-ruby"
+  gem.add_dependency "nokogiri"
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "webmock"
 
