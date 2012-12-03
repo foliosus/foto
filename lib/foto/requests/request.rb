@@ -55,7 +55,7 @@ module Foto
         http = Net::HTTP.new(base_uri.host, base_uri.port)
         http.use_ssl = (protocol === 'https')
         http.start do |http|
-          return http.request(http_request)
+          Response.new(http.request(http_request))
         end
       end
 

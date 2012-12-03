@@ -12,6 +12,10 @@ module Foto
         doc = Nokogiri::HTML(@body)
         doc.xpath('/html/body/p').first.content
       end
+
+      def successful?
+        code == '200'
+      end
     end
   end
 end
