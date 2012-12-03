@@ -24,7 +24,9 @@ Foto.configure do |config|
   config.api_key = '41B4333G-FF2E-41B9-2M24-2G31381D237T'
   config.base_uri = 'http://devs.patient-inquiry.com'
 end
+```
 
+Update or create a patient:
 ```ruby
 patient = Foto::Patient.new({
       :first_name    => patient.first_name,
