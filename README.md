@@ -40,6 +40,18 @@ patient = Foto::Patient.new({
 patient.save
 ```
 
+You can also specify an api key per request:
+```ruby
+patient = Foto::Patient.new({
+      :api_key       => '41B4333G-FF2E-41B9-2M24-2G31381D237T',
+      :first_name    => patient.first_name,
+      :last_name     => patient.last_name,
+      ...
+    })
+patient.save
+```
+
+
 ## Contributing
 
 1. Fork it
