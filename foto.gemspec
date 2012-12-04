@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["Peter Tran <ptran@optimiscorp.com>"]
   gem.description   = %q{Provides an interface for communicating with FOTO Patient Inquiry API}
   gem.summary       = %q{Provides an interface for communicating with FOTO Patient Inquiry API}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/optimis/foto"
 
   gem.add_dependency "yajl-ruby"
   gem.add_dependency "nokogiri"
