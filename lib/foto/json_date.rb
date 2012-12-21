@@ -7,6 +7,7 @@ class Foto::JsonDate
 
   def to_json
     format = "\"\\/Date(%s)\\/\""
-    format % [date.strftime("%s%z")]
+    seconds = date.to_i * 1000
+    format % [seconds]
   end
 end
