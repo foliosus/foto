@@ -43,6 +43,10 @@ module Foto
         consumer.api_key || Foto::Config.api_key
       end
 
+      def use_ssl?
+        protocol === 'https'
+      end
+
       def add_headers(http_request)
         http_request.add_field('User-Agent', 'Foto')
         http_request.add_field('Content-Length', content_length)
@@ -53,7 +57,10 @@ module Foto
       def send_http_request
         base_uri = URI(Foto::Config.base_uri)
         http = Net::HTTP.new(base_uri.host, base_uri.port)
-        http.use_ssl = (protocol === 'https')
+        if use_ssl?
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          http.use_ssl = true
+        end
         http.start do |http|
           Response.new(http.request(http_request))
         end
