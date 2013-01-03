@@ -13,7 +13,7 @@ module Foto
       def message
         doc = Nokogiri::HTML(body)
         doc.xpath('/html/body/p').first.content
-      rescue Exception => e
+      rescue NoMethodError => e
         raise InvalidResponse, "The response from FOTO could not be parsed.\nHTTP #{code} : #{body}"
       end
 
