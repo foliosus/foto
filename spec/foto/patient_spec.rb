@@ -5,13 +5,16 @@ describe Foto::Patient do
   let(:initialized_patient) { Foto::Patient.new(patient_attributes) }
   let(:patient_attributes) do
     {
-      external_id:   'external_id_test',
-      first_name:    'Bob',
-      last_name:     'Bobson',
-      email:         'bob.bobson@example.com',
-      date_of_birth: Time.parse('03/07/1983'),
-      gender:        'M',
-      language:      'en'
+      external_id:      'external_id_test',
+      external_site_id: 'clinic_id_test',
+      first_name:       'Bob',
+      last_name:        'Bobson',
+      middle_initial:   'F',
+      alias:            'Frank',
+      email:            'bob.bobson@example.com',
+      date_of_birth:    Time.parse('03/07/1983'),
+      gender:           'M',
+      language:         'en'
     }
   end
 
@@ -32,13 +35,16 @@ describe Foto::Patient do
     let(:date_of_birth) { Foto::JsonDate.new(initialized_patient.date_of_birth).to_json }
     it 'returns a JSON hash of attributes' do
       expected = {
-        'FirstName'   => initialized_patient.first_name,
-        'LastName'    => initialized_patient.last_name,
-        'DateOfBirth' => Yajl::Parser.parse(date_of_birth),
-        'Email'       => initialized_patient.email,
-        'Gender'      => initialized_patient.gender,
-        'Language'    => initialized_patient.language,
-        'ExternalId'  => initialized_patient.external_id
+        'FirstName'      => initialized_patient.first_name,
+        'LastName'       => initialized_patient.last_name,
+        'MiddleInitial'  => initialized_patient.middle_initial,
+        'Alias'          => initialized_patient.alias,
+        'DateOfBirth'    => Yajl::Parser.parse(date_of_birth),
+        'Email'          => initialized_patient.email,
+        'Gender'         => initialized_patient.gender,
+        'Language'       => initialized_patient.language,
+        'ExternalID'     => initialized_patient.external_id,
+        'ExternalSiteID' => initialized_patient.external_site_id
       }
       expect(Yajl::Parser.parse(initialized_patient.as_json)).to eq(expected)
     end

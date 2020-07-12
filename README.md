@@ -29,13 +29,15 @@ end
 ### Update or create a patient:
 ```ruby
 foto_patient = Foto::Patient.new({
-      :first_name    => patient.first_name,
-      :last_name     => patient.last_name,
-      :date_of_birth => patient.birth_date,
-      :email         => patient.email,
-      :gender        => patient.gender,
-      :language      => 'en',
-      :external_id   => patient.id
+      :first_name       => patient.first_name,
+      :last_name        => patient.last_name,
+      :middle_initial   => patient.middle_initial,
+      :date_of_birth    => patient.birth_date,
+      :email            => patient.email,
+      :gender           => patient.gender,
+      :language         => 'en',
+      :external_id      => patient.id,
+      :external_site_id => patient.external_site_id,
     })
 foto_patient.save
 ```
