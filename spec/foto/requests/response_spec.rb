@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Foto::Requests::Response do
   let(:http_response) do
-    mock :http_response, :body => html, :code => '401'
+    mock :http_response, body: html, code: '401'
   end
   let(:html) do
     %q{

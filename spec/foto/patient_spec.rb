@@ -5,13 +5,13 @@ describe Foto::Patient do
   let(:initialized_patient) { Foto::Patient.new(patient_attributes) }
   let(:patient_attributes) do
     {
-      :external_id   => 'external_id_test',
-      :first_name    => 'Bob',
-      :last_name     => 'Bobson',
-      :email         => 'bob.bobson@bobbobson.com',
-      :date_of_birth => Time.parse('03/07/1983'),
-      :gender        => 'M',
-      :language      => 'en'
+      external_id:   'external_id_test',
+      first_name:    'Bob',
+      last_name:     'Bobson',
+      email:         'bob.bobson@bobbobson.com',
+      date_of_birth: Time.parse('03/07/1983'),
+      gender:        'M',
+      language:      'en'
     }
   end
 

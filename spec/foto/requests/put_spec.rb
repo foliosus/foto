@@ -5,9 +5,9 @@ describe Foto::Requests::Put do
   let(:url) { Foto::Requests::Put.new(patient).send(:build_url).to_s }
   let(:body) do
     {
-      :a => 'a',
-      :b => 'b',
-      :c => 'c'
+      a: 'a',
+      b: 'b',
+      c: 'c'
     }
   end
   let(:error) do
@@ -41,7 +41,7 @@ describe Foto::Requests::Put do
 
     describe 'On error' do
       it 'returns an instance of Foto::Requests::Response' do
-        stub_request(:put, url).to_return(:body => error, :status => 401)
+        stub_request(:put, url).to_return(body: error, status: 401)
         response = Foto::Requests::Put.new(patient, body).run
         assert_requested(:put, url)
         response.message.should eql('A valid API key needs to be included using the Api-Key query string parameter')
