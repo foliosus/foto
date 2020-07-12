@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Foto::Requests::Response do
   let(:http_response) do
-    mock :http_response, body: html, code: '401'
+    double :http_response, body: html, code: '401'
   end
   let(:html) do
     %q{
@@ -27,20 +27,20 @@ describe Foto::Requests::Response do
 
   describe '#initialize' do
     it 'sets the appropriate instance variables' do
-      response.body.should eql(html)
-      response.code.should eql('401')
+      expect(response.body).to eql(html)
+      expect(response.code).to eql('401')
     end
   end
 
   describe '#message' do
     it 'returns the correct response message' do
-      response.message.should eql('A valid API key needs to be included using the Api-Key query string parameter')
+      expect(response.message).to eql('A valid API key needs to be included using the Api-Key query string parameter')
     end
   end
 
   describe 'successful?' do
     it 'returns true if the request was successful' do
-      response.should_not be_successful
+      expect(response).to_not be_successful
     end
   end
 end

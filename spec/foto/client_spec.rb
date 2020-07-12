@@ -8,8 +8,8 @@ describe Foto::Client do
     let(:foto) { Foto::Client.new(default_options) }
 
     it 'can accept a default options hash' do
-      foto.api_key.should eql(default_options[:api_key])
-      foto.base_uri.should eql(default_options[:base_uri])
+      expect(foto.api_key).to eql(default_options[:api_key])
+      expect(foto.base_uri).to eql(default_options[:base_uri])
     end
   end
 end

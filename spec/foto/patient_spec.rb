@@ -17,21 +17,21 @@ describe Foto::Patient do
 
   it 'should have accessors for each attribute' do
     Foto::Patient.attributes.each do |attribute|
-      patient.should respond_to(attribute)
+      expect(patient).to respond_to(attribute)
     end
   end
 
   it 'accepts an initial hash of attributes' do
     patient_attributes.each do |k, v|
-      v.should_not be_nil
-      initialized_patient.send(k).should eql(v)
+      expect(v).to be_truthy
+      expect(initialized_patient.send(k)).to eql(v)
     end
   end
 
   describe '#as_json' do
     let(:date_of_birth) { Foto::JsonDate.new(initialized_patient.date_of_birth).to_json }
     it 'returns a JSON hash of attributes' do
-      Yajl::Parser.parse(initialized_patient.as_json).should == {
+      expected = {
         'FirstName'   => initialized_patient.first_name,
         'LastName'    => initialized_patient.last_name,
         'DateOfBirth' => Yajl::Parser.parse(date_of_birth),
@@ -40,22 +40,23 @@ describe Foto::Patient do
         'Language'    => initialized_patient.language,
         'ExternalId'  => initialized_patient.external_id
       }
+      expect(Yajl::Parser.parse(initialized_patient.as_json)).to eq(expected)
     end
   end
 
   describe '#save' do
-    let(:request) { mock :request }
+    let(:request) { double :request }
     it 'makes a request to FOTO' do
-      Foto::Requests::Put.should_receive(:new).and_return(request)
-      request.should_receive(:run)
+      expect(Foto::Requests::Put).to receive(:new).and_return(request)
+      expect(request).to receive(:run)
       initialized_patient.save
     end
   end
 
   describe '.url' do
     it 'returns a partial URL' do
-      patient.class.url.should_not be_nil
-      patient.class.url.should be_an_instance_of(String)
+      expect(patient.class.url).to be_truthy
+      expect(patient.class.url).to be_an_instance_of(String)
     end
   end
 end

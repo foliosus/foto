@@ -44,8 +44,8 @@ describe Foto::Requests::Put do
         stub_request(:put, url).to_return(body: error, status: 401)
         response = Foto::Requests::Put.new(patient, body).run
         assert_requested(:put, url)
-        response.message.should eql('A valid API key needs to be included using the Api-Key query string parameter')
-        response.code.should eql('401')
+        expect(response.message).to eql('A valid API key needs to be included using the Api-Key query string parameter')
+        expect(response.code).to eql('401')
       end
     end
   end
@@ -56,11 +56,11 @@ describe Foto::Requests::Put do
     let(:uri) { Foto::Requests::Put.new(patient).send(:build_url) }
 
     it 'returns a URI::HTTP' do
-      uri.class.should eql(URI::HTTP)
+      expect(uri.class).to eql(URI::HTTP)
     end
 
     it 'has the correct url' do
-      uri.to_s.should eql("#{base_uri}/#{patient.class.url}/json/?Api-Key=#{api_key}")
+      expect(uri.to_s).to eql("#{base_uri}/#{patient.class.url}/json/?Api-Key=#{api_key}")
     end
   end
 end

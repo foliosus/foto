@@ -10,31 +10,31 @@ describe Foto::Config do
 
   describe '.api_key' do
     it 'has a default' do
-      config.api_key.should eql(defaults::API_KEY)
+      expect(config.api_key).to eql(defaults::API_KEY)
     end
   end
 
   describe '.base_uri' do
     it 'has a default' do
-      config.base_uri.should eql(defaults::BASE_URI)
+      expect(config.base_uri).to eql(defaults::BASE_URI)
     end
   end
 
   describe '.reset!' do
     it 'resets the configuration to their default values' do
       config.api_key = 'somethingelse'
-      config.api_key.should eql('somethingelse')
+      expect(config.api_key).to eql('somethingelse')
       config.base_uri = 'http://other.com'
-      config.base_uri.should eql('http://other.com')
+      expect(config.base_uri).to eql('http://other.com')
       config.reset!
-      config.api_key.should eql(defaults::API_KEY)
-      config.base_uri.should eql(defaults::BASE_URI)
+      expect(config.api_key).to eql(defaults::API_KEY)
+      expect(config.base_uri).to eql(defaults::BASE_URI)
     end
   end
 
   describe '.options' do
     it 'returns a hash of current options' do
-      config.options.keys.should =~ Foto::Config::VALID_OPTIONS
+      expect(config.options.keys).to match(Foto::Config::VALID_OPTIONS)
     end
   end
 end
@@ -45,7 +45,7 @@ describe Foto do
       it "#{option} should be configurable" do
         Foto.configure do |configuration|
           configuration.send("#{option}=", option)
-          configuration.send(option).should eql(option)
+          expect(configuration.send(option)).to eql(option)
         end
       end
     end
