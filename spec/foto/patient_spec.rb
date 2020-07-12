@@ -8,7 +8,7 @@ describe Foto::Patient do
       external_id:   'external_id_test',
       first_name:    'Bob',
       last_name:     'Bobson',
-      email:         'bob.bobson@bobbobson.com',
+      email:         'bob.bobson@example.com',
       date_of_birth: Time.parse('03/07/1983'),
       gender:        'M',
       language:      'en'
