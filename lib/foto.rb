@@ -1,3 +1,4 @@
+require 'yajl'
 require 'foto/version'
 
 module Foto
