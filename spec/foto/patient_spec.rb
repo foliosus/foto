@@ -43,8 +43,8 @@ describe Foto::Patient do
         'Email'          => initialized_patient.email,
         'Gender'         => initialized_patient.gender,
         'Language'       => initialized_patient.language,
-        'ExternalID'     => initialized_patient.external_id,
-        'ExternalSiteID' => initialized_patient.external_site_id
+        'ExternalId'     => initialized_patient.external_id,
+        'ExternalSiteId' => initialized_patient.external_site_id
       }
       expect(Yajl::Parser.parse(initialized_patient.as_json)).to eq(expected)
     end

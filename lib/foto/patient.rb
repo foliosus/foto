@@ -35,8 +35,8 @@ module Foto
         'Email'          => email,
         'Gender'         => gender,
         'Language'       => language || 'en',
-        'ExternalID'     => external_id,
-        'ExternalSiteID' => external_site_id
+        'ExternalId'     => external_id,
+        'ExternalSiteId' => external_site_id
       })
     end
   end
