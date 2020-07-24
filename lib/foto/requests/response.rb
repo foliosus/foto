@@ -1,24 +1,44 @@
 module Foto
   module Requests
     class Response
-      attr_reader :body, :code
+      attr_reader :body, :code, :hash
 
       class InvalidResponse < StandardError; end
 
       def initialize(http_response)
         @body = http_response.body
         @code = http_response.code
-      end
-
-      def message
-        doc = Nokogiri::HTML(body)
-        doc.xpath('/html/body/p').first.content
-      rescue NoMethodError => e
-        raise InvalidResponse, "The response from FOTO could not be parsed.\nHTTP #{code} : #{body}"
+        parse_json
       end
 
       def successful?
+        if hash.keys.include?('Success')
+          ok? && hash['Success']
+        else
+          ok?
+        end
+      end
+
+      def ok?
         code == '200'
+      end
+
+      def error?
+        !ok?
+      end
+
+      private def parse_json
+        @hash = Hash.new{|hash, key| key.is_a?(Symbol) && hash[key.to_s] ? hash[key.to_s] : nil }
+        if ok?
+          if !body.empty?
+            @hash.merge!(JSON.parse(body))
+          end
+        else
+          response_string = Nokogiri::HTML(body).xpath('/html/body/p').first.content
+          @hash.merge!({ 'error' => response_string })
+        end
+      rescue NoMethodError => e
+        raise InvalidResponse, "The response from FOTO could not be parsed. HTTP #{code}: #{body}"
       end
     end
   end
