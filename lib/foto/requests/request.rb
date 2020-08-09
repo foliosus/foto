@@ -55,7 +55,7 @@ module Foto
       end
 
       def send_http_request
-        base_uri = URI(Foto::Config.base_uri)
+        base_uri = URI(Foto::Config.base_api_uri)
         http = Net::HTTP.new(base_uri.host, base_uri.port)
         if use_ssl?
           http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -68,7 +68,7 @@ module Foto
 
       def build_url
         format = 'json'
-        URI("#{Foto::Config.base_uri}/#{relative_url}/#{format}/?Api-Key=#{api_key}")
+        URI("#{Foto::Config.base_api_uri}/#{relative_url}/#{format}/?Api-Key=#{api_key}")
       end
     end
   end

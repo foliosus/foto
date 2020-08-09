@@ -22,7 +22,8 @@ Or install it yourself as:
 ```ruby
 Foto.configure do |config|
   config.api_key = '41B4333G-FF2E-41B9-2M24-2G31381D237T'
-  config.base_uri = 'http://devs.patient-inquiry.com'
+  config.base_api_uri = 'http://devs.patient-inquiry.com'
+  config.base_ui_uri = 'http://staging.fotoinc.com'
 end
 ```
 

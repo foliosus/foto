@@ -53,7 +53,7 @@ describe Foto::Requests::Put do
 
   describe '#url' do
     let(:api_key) { Foto::Config.api_key }
-    let(:base_uri) { Foto::Config.base_uri }
+    let(:base_api_uri) { Foto::Config.base_api_uri }
     let(:uri) { Foto::Requests::Put.new(patient).send(:build_url) }
 
     it 'returns a URI::HTTP' do
@@ -61,7 +61,7 @@ describe Foto::Requests::Put do
     end
 
     it 'has the correct url' do
-      expect(uri.to_s).to eql("#{base_uri}/#{patient.class.url}/json/?Api-Key=#{api_key}")
+      expect(uri.to_s).to eql("#{base_api_uri}/#{patient.class.url}/json/?Api-Key=#{api_key}")
     end
   end
 end

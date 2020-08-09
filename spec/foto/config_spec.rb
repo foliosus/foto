@@ -14,9 +14,15 @@ describe Foto::Config do
     end
   end
 
-  describe '.base_uri' do
+  describe '.base_api_uri' do
     it 'has a default' do
-      expect(config.base_uri).to eql(defaults::BASE_URI)
+      expect(config.base_api_uri).to eql(defaults::BASE_API_URI)
+    end
+  end
+
+  describe '.base_ui_uri' do
+    it 'has a default' do
+      expect(config.base_ui_uri).to eql(defaults::BASE_UI_URI)
     end
   end
 
@@ -24,11 +30,14 @@ describe Foto::Config do
     it 'resets the configuration to their default values' do
       config.api_key = 'somethingelse'
       expect(config.api_key).to eql('somethingelse')
-      config.base_uri = 'http://other.com'
-      expect(config.base_uri).to eql('http://other.com')
+      config.base_api_uri = 'http://other.com'
+      expect(config.base_api_uri).to eql('http://other.com')
+      config.base_ui_uri = 'http://another.com'
+      expect(config.base_ui_uri).to eql('http://another.com')
       config.reset!
       expect(config.api_key).to eql(defaults::API_KEY)
-      expect(config.base_uri).to eql(defaults::BASE_URI)
+      expect(config.base_api_uri).to eql(defaults::BASE_API_URI)
+      expect(config.base_ui_uri).to eql(defaults::BASE_UI_URI)
     end
   end
 
