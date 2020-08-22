@@ -6,6 +6,10 @@ module Foto
       raise NotImplementedError.new('You must implement self.url')
     end
 
+    def self.http_verb_class
+      Foto::Requests::Put
+    end
+
     def initialize(attributes={})
       attributes.each do |k, v|
         send("#{k}=", v)
@@ -17,7 +21,7 @@ module Foto
     end
 
     def save
-      put = Foto::Requests::Put.new(self, as_json)
+      put = self.class.http_verb_class.new(self, as_json)
       put.run
     end
   end

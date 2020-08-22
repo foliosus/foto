@@ -48,7 +48,7 @@ describe Foto::Requests::Response do
     end
   end
 
-  context "a successful request" do
+  context "a successful request for a complex data structure" do
     let(:http_response) do
       double :http_response, body: html, code: '200'
     end
@@ -70,6 +70,37 @@ describe Foto::Requests::Response do
         'PatientExternalID' => '00001',
         'Success' => true,
         'Text' => nil
+      }
+      expect(response.hash).to eq(expected)
+    end
+
+    it 'knows it is successful' do
+      expect(response).to be_successful
+    end
+
+    it 'knows it is ok' do
+      expect(response).to be_ok
+    end
+  end
+
+  context "a successful request for a simple token" do
+    let(:http_response) do
+      double :http_response, body: html, code: '200'
+    end
+    let(:html) { '"TOKENVALUE"' }
+    let!(:response) { Foto::Requests::Response.new(http_response) }
+
+    it 'provides its response code' do
+      expect(response.code).to eql('200')
+    end
+
+    it 'provides its raw body' do
+      expect(response.body).to eql(html)
+    end
+
+    it 'provides a hash' do
+      expected = {
+        'value' => 'TOKENVALUE'
       }
       expect(response.hash).to eq(expected)
     end

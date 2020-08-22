@@ -31,7 +31,12 @@ module Foto
         @hash = Hash.new{|hash, key| key.is_a?(Symbol) && hash[key.to_s] ? hash[key.to_s] : nil }
         if ok?
           if !body.empty?
-            @hash.merge!(JSON.parse(body))
+            parsed_body = JSON.parse(body)
+            if parsed_body.is_a?(String)
+              @hash['value'] = parsed_body
+            else
+              @hash.merge!(JSON.parse(body))
+            end
           end
         else
           response_string = Nokogiri::HTML(body).xpath('/html/body/p').first.content
