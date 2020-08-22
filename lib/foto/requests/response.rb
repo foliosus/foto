@@ -33,7 +33,7 @@ module Foto
           if !body.empty?
             parsed_body = JSON.parse(body)
             if parsed_body.is_a?(String)
-              @hash['value'] = parsed_body
+              @hash.merge!({ 'value' => parsed_body })
             else
               @hash.merge!(JSON.parse(body))
             end
