@@ -34,8 +34,14 @@ module Foto
             parsed_body = JSON.parse(body)
             if parsed_body.is_a?(String)
               @hash.merge!({ 'value' => parsed_body })
-            else
-              @hash.merge!(JSON.parse(body))
+            elsif parsed_body.is_a?(Array)
+              if parsed_body.length == 1
+                @hash.merge!(parsed_body.first)
+              else
+                @hash.merge!({ 'values' => parsed_body })
+              end
+            else # parsed_body is a hash (the common case)
+              @hash.merge!(parsed_body)
             end
           end
         else

@@ -6,6 +6,7 @@ module Foto
       def initialize(consumer, body = {})
         @consumer = consumer
         @relative_url = consumer.class.url
+        @uri_id = consumer.uri_id
         @body = body
       end
 
@@ -68,7 +69,10 @@ module Foto
 
       def build_url
         format = 'json'
-        URI("#{Foto::Config.base_api_uri}/#{relative_url}/#{format}/?Api-Key=#{api_key}")
+        uri = "#{Foto::Config.base_api_uri}/#{relative_url}/#{format}/?Api-Key=#{api_key}"
+        uri.sub!('/?', "/#{@uri_id}?") if @uri_id
+        # puts "URI (#{@consumer.class.http_verb_class}): #{uri.inspect}"
+        URI(uri)
       end
     end
   end

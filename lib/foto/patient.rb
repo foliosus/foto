@@ -25,6 +25,10 @@ module Foto
       end
     end
 
+    def uri_id
+      nil
+    end
+
     def as_json
       Yajl::Encoder.encode({
         'FirstName'      => first_name,
