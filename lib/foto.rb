@@ -14,6 +14,7 @@ module Foto
   require 'foto/requests/get'
   require 'foto/requests/put'
   require 'foto/requests/post'
+  require 'foto/requests/partner_access_post'
 
   # Load the specific endpoint classes
   require 'foto/claim'
@@ -22,4 +23,5 @@ module Foto
   require 'foto/episode_setup'
   require 'foto/episode_survey_url'
   require 'foto/patient'
+  require 'foto/visit'
 end

@@ -26,7 +26,7 @@ module Foto
       end
 
       def http_verb_class
-        Foto::Requests::Post
+        Foto::Requests::PartnerAccessPost
       end
     end
 

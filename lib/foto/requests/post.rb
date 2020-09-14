@@ -11,11 +11,6 @@ module Foto
         request.body = body
         request
       end
-
-      def build_url
-        format = 'json'
-        URI("#{Foto::Config.base_api_uri}/partneraccess/#{format}/#{relative_url}/?Api-Key=#{api_key}")
-      end
     end
   end
 end

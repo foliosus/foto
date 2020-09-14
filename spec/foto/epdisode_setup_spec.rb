@@ -32,6 +32,10 @@ describe Foto::EpisodeSetup do
     end
   end
 
+  it 'should be a PartnerAccess request' do
+    expect(Foto::EpisodeSetup.http_verb_class).to be(Foto::Requests::PartnerAccessPost)
+  end
+
   describe '#as_json' do
     it 'returns a JSON hash of attributes' do
       expected = {
@@ -54,7 +58,7 @@ describe Foto::EpisodeSetup do
   describe '#save' do
     let(:request) { double :request }
     it 'makes a request to FOTO' do
-      expect(Foto::Requests::Post).to receive(:new).and_return(request)
+      expect(Foto::Requests::PartnerAccessPost).to receive(:new).and_return(request)
       expect(request).to receive(:run)
       initialized_episode_setup.save
     end

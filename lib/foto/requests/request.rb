@@ -71,7 +71,6 @@ module Foto
         format = 'json'
         uri = "#{Foto::Config.base_api_uri}/#{relative_url}/#{format}/?Api-Key=#{api_key}"
         uri.sub!('/?', "/#{@uri_id}?") if @uri_id
-        # puts "URI (#{@consumer.class.http_verb_class}): #{uri.inspect}"
         URI(uri)
       end
     end
