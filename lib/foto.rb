@@ -17,6 +17,7 @@ module Foto
   require 'foto/requests/partner_access_post'
 
   # Load the specific endpoint classes
+  require 'foto/artifact'
   require 'foto/claim'
   require 'foto/discharge'
   require 'foto/episode'
