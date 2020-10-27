@@ -14,6 +14,10 @@ module Foto
         ATTRIBUTES
       end
 
+      def http_verb_class
+        Foto::Requests::Post
+      end
+
       def url
         'discharge'
       end

@@ -41,7 +41,7 @@ describe Foto::Discharge do
   describe '#save' do
     let(:request) { double :request }
     it 'makes a request to FOTO' do
-      expect(Foto::Requests::Put).to receive(:new).and_return(request)
+      expect(Foto::Requests::Post).to receive(:new).and_return(request)
       expect(request).to receive(:run)
       initialized_discharge.save
     end
